@@ -66,13 +66,13 @@ npm run prerender
 Build Command:
 
 ```bash
-npm run build
+npm run build:cloudflare
 ```
 
 Output Directory:
 
 ```text
-dist/niederrhein-haushaltsaufloesungen/browser
+dist/cloudflare/browser
 ```
 
 Node Version:

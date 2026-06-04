@@ -2,6 +2,7 @@
   "scripts": {
     "start": "ng serve --project niederrhein-haushaltsaufloesungen",
     "build": "ng build --project niederrhein-haushaltsaufloesungen",
+    "build:cloudflare": "ng build --project niederrhein-haushaltsaufloesungen --output-path dist/cloudflare",
     "prerender": "ng run niederrhein-haushaltsaufloesungen:prerender"
   },
   "private": true,
