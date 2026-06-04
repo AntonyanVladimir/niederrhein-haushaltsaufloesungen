@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { HeroComponent } from '../../shared/hero/hero.component';
 import { ServiceCardComponent } from '../../shared/service-card/service-card.component';
 import { CtaSectionComponent } from '../../shared/cta-section/cta-section.component';
@@ -9,7 +8,7 @@ import { serviceCards, trustItems } from '../../site-data';
 @Component({
   selector: 'nh-home',
   standalone: true,
-  imports: [RouterLink, HeroComponent, ServiceCardComponent, CtaSectionComponent, AreaLinksComponent],
+  imports: [HeroComponent, ServiceCardComponent, CtaSectionComponent, AreaLinksComponent],
   template: `
     <nh-hero />
 
