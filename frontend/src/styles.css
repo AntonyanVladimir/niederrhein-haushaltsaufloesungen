@@ -20,6 +20,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--white);
   color: var(--text);
@@ -116,6 +121,7 @@ p {
   min-height: 46px;
   padding: .8rem 1.05rem;
   text-decoration: none;
+  text-align: center;
 }
 
 .btn:focus-visible {
@@ -325,8 +331,73 @@ p {
   }
 }
 
+@media (max-width: 640px) {
+  body {
+    line-height: 1.55;
+  }
+
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .section {
+    padding: 2.75rem 0;
+  }
+
+  .sub-hero {
+    padding: 2.75rem 0;
+  }
+
+  .sub-hero p:not(.eyebrow) {
+    font-size: 1.03rem;
+  }
+
+  .check-list,
+  .trust-list div,
+  .area-grid article,
+  .contact-box {
+    padding: 1rem;
+  }
+
+  .steps li {
+    padding: 4rem 1rem 1rem;
+  }
+
+  .steps li::before {
+    left: 1rem;
+    top: 1rem;
+  }
+}
+
 @media (max-width: 520px) {
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 1.48rem;
+  }
+
+  .eyebrow {
+    font-size: .78rem;
+  }
+
   .btn {
+    min-height: 48px;
     width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding-inline: .85rem;
+  }
+
+  h1 {
+    font-size: 1.72rem;
+  }
+
+  h2 {
+    font-size: 1.36rem;
   }
 }

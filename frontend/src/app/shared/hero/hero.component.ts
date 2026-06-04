@@ -97,9 +97,37 @@ import { trustItems } from '../../site-data';
       .hero-grid { grid-template-columns: 1fr; }
       .hero { background: linear-gradient(135deg, var(--navy), var(--blue)); }
     }
+    @media (max-width: 640px) {
+      .hero {
+        padding: 2.75rem 0;
+      }
+      h1 {
+        font-size: clamp(1.85rem, 9vw, 2.4rem);
+        max-width: 100%;
+      }
+      .lead {
+        font-size: 1.08rem;
+        margin-top: 1rem;
+      }
+      .hero-actions {
+        gap: .65rem;
+        margin-top: 1.5rem;
+      }
+      .hero-panel {
+        padding: 1rem;
+      }
+    }
     @media (max-width: 620px) {
       .hero-panel {
         grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 380px) {
+      h1 {
+        font-size: 1.68rem;
+      }
+      .lead {
+        font-size: 1rem;
       }
     }
   `]

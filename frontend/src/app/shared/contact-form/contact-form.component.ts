@@ -124,7 +124,13 @@ import { contact } from '../../site-data';
       justify-self: start;
     }
     @media (max-width: 640px) {
-      .contact-form { grid-template-columns: 1fr; }
+      .contact-form {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+      button {
+        justify-self: stretch;
+      }
     }
   `]
 })

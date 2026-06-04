@@ -103,6 +103,51 @@ import { contact } from '../../site-data';
         justify-content: flex-start;
       }
     }
+    @media (max-width: 640px) {
+      .site-header {
+        position: static;
+      }
+      .nav {
+        gap: .85rem;
+        min-height: 0;
+      }
+      .brand {
+        font-size: .95rem;
+      }
+      .brand img {
+        height: 38px;
+        width: 38px;
+      }
+      .nav-links {
+        margin-inline: -1rem;
+        overflow-x: auto;
+        padding: .15rem 1rem .45rem;
+        scrollbar-width: thin;
+        width: calc(100% + 2rem);
+      }
+      .nav-links a {
+        background: var(--light);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        flex: 0 0 auto;
+        font-size: .9rem;
+        padding: .55rem .7rem;
+        white-space: nowrap;
+      }
+      .phone-link {
+        text-align: center;
+        width: 100%;
+      }
+    }
+    @media (max-width: 380px) {
+      .brand {
+        font-size: .86rem;
+      }
+      .brand img {
+        height: 34px;
+        width: 34px;
+      }
+    }
   `]
 })
 export class HeaderComponent {
