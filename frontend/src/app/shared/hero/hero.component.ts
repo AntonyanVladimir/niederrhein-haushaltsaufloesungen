@@ -20,6 +20,7 @@ import { trustItems } from '../../site-data';
           </div>
         </div>
         <div class="hero-panel" aria-label="Vorteile">
+          <p class="panel-label">Ihre Vorteile</p>
           @for (item of trustItems; track item) {
             <nh-trust-badge [label]="item" />
           }
@@ -33,13 +34,13 @@ import { trustItems } from '../../site-data';
         linear-gradient(135deg, rgba(6,31,58,.94), rgba(11,47,85,.88)),
         url('/logo.png') right 8% center / 280px no-repeat;
       color: var(--white);
-      padding: clamp(4rem, 8vw, 7rem) 0;
+      padding: clamp(3.5rem, 7vw, 6.25rem) 0;
     }
     .hero-grid {
       align-items: center;
       display: grid;
-      gap: 2.5rem;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap: clamp(2rem, 5vw, 4.5rem);
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
     }
     .eyebrow {
       color: var(--accent-light);
@@ -50,10 +51,10 @@ import { trustItems } from '../../site-data';
     }
     h1 {
       color: var(--white);
-      font-size: clamp(2.35rem, 5vw, 4.7rem);
-      line-height: 1;
+      font-size: clamp(1.95rem, 3.45vw, 3.35rem);
+      line-height: 1.08;
       margin: 0;
-      max-width: 860px;
+      max-width: 660px;
     }
     .lead {
       color: rgba(255, 255, 255, .88);
@@ -68,16 +69,38 @@ import { trustItems } from '../../site-data';
       margin-top: 2rem;
     }
     .hero-panel {
-      background: rgba(255, 255, 255, .08);
+      background: rgba(255, 255, 255, .09);
       border: 1px solid rgba(255, 255, 255, .22);
       border-radius: 8px;
       display: grid;
-      gap: .75rem;
-      padding: 1.1rem;
+      gap: .15rem 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 1.4rem;
+    }
+    .panel-label {
+      color: var(--accent-light);
+      font-size: .84rem;
+      font-weight: 850;
+      grid-column: 1 / -1;
+      margin: 0 0 .55rem;
+      text-transform: uppercase;
+    }
+    @media (max-width: 1050px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      h1 {
+        max-width: 720px;
+      }
     }
     @media (max-width: 850px) {
       .hero-grid { grid-template-columns: 1fr; }
       .hero { background: linear-gradient(135deg, var(--navy), var(--blue)); }
+    }
+    @media (max-width: 620px) {
+      .hero-panel {
+        grid-template-columns: 1fr;
+      }
     }
   `]
 })

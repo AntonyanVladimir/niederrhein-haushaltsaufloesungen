@@ -12,21 +12,21 @@ import { Component, input } from '@angular/core';
   styles: [`
     .trust-badge {
       align-items: center;
-      background: rgba(255, 255, 255, .1);
-      border: 1px solid rgba(255, 255, 255, .18);
-      border-radius: 6px;
+      border-top: 1px solid rgba(255, 255, 255, .16);
       color: var(--white);
       display: flex;
       gap: .65rem;
-      min-height: 46px;
-      padding: .65rem .75rem;
+      min-height: 44px;
+      padding: .7rem 0;
     }
     span {
       color: var(--accent-light);
+      flex: 0 0 auto;
       font-weight: 900;
     }
     strong {
-      font-size: .95rem;
+      font-size: .92rem;
+      line-height: 1.3;
     }
   `]
 })
