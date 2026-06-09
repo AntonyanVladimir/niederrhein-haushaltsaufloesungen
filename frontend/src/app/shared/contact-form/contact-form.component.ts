@@ -47,9 +47,9 @@ import { contact } from '../../site-data';
         <p class="form-note error" role="alert">Bitte füllen Sie die Pflichtfelder aus und bestätigen Sie den Datenschutz.</p>
       }
       @if (submitted && form.valid) {
-        <p class="form-note success">Ihre E-Mail-Anwendung wird geöffnet. Später kann hier direkt die .NET API angebunden werden.</p>
+        <p class="form-note success">Ihre E-Mail-Anwendung wird geöffnet. Eine Kopie der Anfrage wird an Ihre E-Mail-Adresse eingetragen.</p>
       }
-      <button class="btn btn-primary span-2" type="submit">Anfrage vorbereiten</button>
+      <button class="btn btn-primary span-2" type="submit">Anfrage unverbindlich abschicken</button>
     </form>
   `,
   styles: [`
@@ -157,11 +157,13 @@ export class ContactFormComponent {
 
     const value = this.form.getRawValue();
     const subject = encodeURIComponent(`Anfrage: ${value.requestType}`);
+    const customerCopy = encodeURIComponent(value.email);
     const body = encodeURIComponent(
       `Name: ${value.name}\nTelefon: ${value.phone}\nE-Mail: ${value.email}\nOrt: ${value.city}\nArt der Anfrage: ${value.requestType}\n\nNachricht:\n${value.message}`
     );
 
     // TODO: Replace mailto fallback with POST /api/contact once the .NET backend is available.
-    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
+    // The backend should send the business notification and a separate customer confirmation email.
+    window.location.href = `mailto:${contact.email}?cc=${customerCopy}&subject=${subject}&body=${body}`;
   }
 }
