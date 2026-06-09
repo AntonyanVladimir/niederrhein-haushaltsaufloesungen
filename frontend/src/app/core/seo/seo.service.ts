@@ -4,6 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { SeoData } from './seo.model';
+import { contact } from '../../site-data';
 
 const SITE_URL = 'https://niederrhein-haushaltsaufloesungen.de';
 const BUSINESS_NAME = 'Niederrhein Haushaltsauflösungen';
@@ -78,8 +79,8 @@ export class SeoService {
       '@type': 'LocalBusiness',
       name: BUSINESS_NAME,
       url: SITE_URL,
-      email: 'info@niederrhein-haushaltsaufloesungen.de',
-      telephone: '+49 XXX XXXXXXX',
+      email: contact.email,
+      telephone: contact.phone,
       areaServed: ['Geldern', 'Kevelaer', 'Straelen', 'Kerken', 'Issum', 'Wachtendonk', 'Kreis Kleve'],
       slogan: 'Zuverlässig räumen. Sauber übergeben.',
       serviceType: [

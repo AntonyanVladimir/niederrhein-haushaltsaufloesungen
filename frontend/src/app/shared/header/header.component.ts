@@ -36,7 +36,7 @@ import { contact } from '../../site-data';
             <a routerLink="/einsatzgebiete" routerLinkActive="active" (click)="closeMenu()">Einsatzgebiete</a>
             <a routerLink="/kontakt" routerLinkActive="active" (click)="closeMenu()">Kontakt</a>
           </div>
-          <a class="phone-link" [href]="'tel:' + phone" (click)="closeMenu()">Jetzt anrufen</a>
+          <a class="phone-link" [href]="'tel:' + phoneHref" (click)="closeMenu()">Jetzt anrufen</a>
         </div>
       </nav>
     </header>
@@ -225,6 +225,7 @@ import { contact } from '../../site-data';
 })
 export class HeaderComponent {
   readonly phone = contact.phone;
+  readonly phoneHref = contact.phoneHref;
   readonly menuOpen = signal(false);
 
   toggleMenu(): void {

@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { contact } from '../../site-data';
 
 @Component({
   selector: 'nh-cta-section',
@@ -14,7 +15,7 @@ import { RouterLink } from '@angular/router';
         </div>
         <div class="cta-actions">
           <a class="btn btn-primary" routerLink="/kontakt">Kostenlose Besichtigung anfragen</a>
-          <a class="btn btn-secondary" href="tel:+49XXXXXXXX">Jetzt anrufen</a>
+          <a class="btn btn-secondary" [href]="'tel:' + phoneHref">Jetzt anrufen</a>
         </div>
       </div>
     </section>
@@ -54,4 +55,5 @@ import { RouterLink } from '@angular/router';
 export class CtaSectionComponent {
   readonly headline = input('Kostenlose Besichtigung vor Ort anfragen');
   readonly text = input('Wir klären Umfang, Termin und Festpreis transparent vorab.');
+  readonly phoneHref = contact.phoneHref;
 }

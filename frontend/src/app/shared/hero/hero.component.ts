@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TrustBadgeComponent } from '../trust-badge/trust-badge.component';
-import { trustItems } from '../../site-data';
+import { contact, trustItems } from '../../site-data';
 
 @Component({
   selector: 'nh-hero',
@@ -16,7 +16,7 @@ import { trustItems } from '../../site-data';
           <p class="lead">{{ subheadline() }}</p>
           <div class="hero-actions">
             <a class="btn btn-primary" routerLink="/kontakt">Kostenlose Besichtigung anfragen</a>
-            <a class="btn btn-secondary" href="tel:+49XXXXXXXX">Jetzt anrufen</a>
+            <a class="btn btn-secondary" [href]="'tel:' + phoneHref">Jetzt anrufen</a>
           </div>
         </div>
         <div class="hero-panel" aria-label="Vorteile">
@@ -137,4 +137,5 @@ export class HeroComponent {
   readonly headline = input('Haushaltsauflösungen & Entrümpelungen am Niederrhein');
   readonly subheadline = input('Zuverlässig räumen. Sauber übergeben.');
   readonly trustItems = trustItems;
+  readonly phoneHref = contact.phoneHref;
 }
