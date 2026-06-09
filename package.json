@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "ng serve --project niederrhein-haushaltsaufloesungen",
+    "start:cloudflare": "npm run build:cloudflare && npx wrangler pages dev dist/cloudflare/browser --compatibility-date=2026-06-09",
     "build": "ng build --project niederrhein-haushaltsaufloesungen",
     "build:cloudflare": "ng build --project niederrhein-haushaltsaufloesungen --output-path dist/cloudflare",
     "prerender": "ng run niederrhein-haushaltsaufloesungen:prerender"

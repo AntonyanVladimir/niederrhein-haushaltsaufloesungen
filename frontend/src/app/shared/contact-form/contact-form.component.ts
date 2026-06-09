@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { contact } from '../../site-data';
+import { ContactApiService } from '../../core/api/contact-api.service';
 
 @Component({
   selector: 'nh-contact-form',
@@ -46,10 +46,15 @@ import { contact } from '../../site-data';
       @if (submitted && form.invalid) {
         <p class="form-note error" role="alert">Bitte füllen Sie die Pflichtfelder aus und bestätigen Sie den Datenschutz.</p>
       }
-      @if (submitted && form.valid) {
-        <p class="form-note success">Ihre E-Mail-Anwendung wird geöffnet. Eine Kopie der Anfrage wird an Ihre E-Mail-Adresse eingetragen.</p>
+      @if (submitState() === 'success') {
+        <p class="form-note success">Vielen Dank. Ihre Anfrage wurde versendet. Sie erhalten eine Bestätigung per E-Mail.</p>
       }
-      <button class="btn btn-primary span-2" type="submit">Anfrage unverbindlich abschicken</button>
+      @if (submitState() === 'error') {
+        <p class="form-note error" role="alert">Die Anfrage konnte gerade nicht versendet werden. Bitte versuchen Sie es später erneut oder rufen Sie direkt an.</p>
+      }
+      <button class="btn btn-primary span-2" type="submit" [disabled]="submitState() === 'sending'">
+        {{ submitState() === 'sending' ? 'Anfrage wird gesendet ...' : 'Anfrage unverbindlich abschicken' }}
+      </button>
     </form>
   `,
   styles: [`
@@ -123,6 +128,10 @@ import { contact } from '../../site-data';
     button {
       justify-self: start;
     }
+    button:disabled {
+      cursor: wait;
+      opacity: .72;
+    }
     @media (max-width: 640px) {
       .contact-form {
         grid-template-columns: 1fr;
@@ -136,6 +145,7 @@ import { contact } from '../../site-data';
 })
 export class ContactFormComponent {
   private readonly formBuilder = inject(FormBuilder);
+  private readonly contactApi = inject(ContactApiService);
   readonly form = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     phone: ['', Validators.required],
@@ -147,23 +157,35 @@ export class ContactFormComponent {
   });
 
   submitted = false;
+  readonly submitState = signal<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   submit(): void {
     this.submitted = true;
+    this.submitState.set('idle');
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
     const value = this.form.getRawValue();
-    const subject = encodeURIComponent(`Anfrage: ${value.requestType}`);
-    const customerCopy = encodeURIComponent(value.email);
-    const body = encodeURIComponent(
-      `Name: ${value.name}\nTelefon: ${value.phone}\nE-Mail: ${value.email}\nOrt: ${value.city}\nArt der Anfrage: ${value.requestType}\n\nNachricht:\n${value.message}`
-    );
+    this.submitState.set('sending');
 
-    // TODO: Replace mailto fallback with POST /api/contact once the .NET backend is available.
-    // The backend should send the business notification and a separate customer confirmation email.
-    window.location.href = `mailto:${contact.email}?cc=${customerCopy}&subject=${subject}&body=${body}`;
+    this.contactApi.send({
+      name: value.name,
+      phone: value.phone,
+      email: value.email,
+      city: value.city,
+      requestType: value.requestType,
+      message: value.message,
+      privacyAccepted: value.privacy
+    }).subscribe({
+      next: () => {
+        this.submitState.set('success');
+        this.submitted = false;
+        this.form.reset();
+      },
+      error: () => this.submitState.set('error')
+    });
   }
 }

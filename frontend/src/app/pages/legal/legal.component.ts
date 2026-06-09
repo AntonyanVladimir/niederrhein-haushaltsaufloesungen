@@ -17,16 +17,16 @@ import { contact } from '../../site-data';
     <section class="section">
       <div class="container narrow legal-copy">
         @if (!isPrivacy) {
-          <h2>Angaben gemäß § 5 TMG</h2>
+          <h2>Angaben gemäß § 5 DDG</h2>
           <p><strong>Niederrhein Haushaltsauflösungen</strong><br>Adresse wird ergänzt<br>Deutschland</p>
           <p><strong>Kontakt</strong><br>Telefon: {{ contact.phone }}<br>E-Mail: {{ contact.email }}</p>
           <p><strong>Verantwortlich für den Inhalt</strong><br>Name und Anschrift werden ergänzt.</p>
           <p class="placeholder">Hinweis: Dieses Impressum enthält Platzhalter und muss vor Veröffentlichung rechtlich geprüft und vervollständigt werden.</p>
         } @else {
           <h2>Datenschutzhinweise</h2>
-          <p>Diese Website ist in Version 1 als statische Website ohne Datenbank und ohne Backend geplant. Beim Aufruf werden technisch notwendige Daten durch den Hosting-Anbieter verarbeitet.</p>
+          <p>Diese Website verarbeitet technisch notwendige Daten über den Hosting-Anbieter. Für Kontaktanfragen werden die im Formular eingegebenen Daten an eine Cloudflare Pages Function übermittelt.</p>
           <h2>Kontaktaufnahme</h2>
-          <p>Das Kontaktformular nutzt aktuell einen Mailto-Fallback. Dabei werden die eingegebenen Daten an Ihr lokal eingerichtetes E-Mail-Programm übergeben und nicht über ein Backend gespeichert.</p>
+          <p>Wenn Sie das Kontaktformular nutzen, werden Name, Telefonnummer, E-Mail-Adresse, Ort, Anfrageart und Nachricht verarbeitet, um Ihre Anfrage zu beantworten. Zusätzlich wird eine Bestätigungsmail an die angegebene E-Mail-Adresse versendet.</p>
           <h2>Cookies und Tracking</h2>
           <p>Es sind keine Tracking-Cookies vorgesehen. Falls später Analyse- oder API-Dienste ergänzt werden, muss diese Datenschutzerklärung aktualisiert werden.</p>
           <p class="placeholder">Hinweis: Diese Datenschutzhinweise enthalten Platzhalter und müssen vor Veröffentlichung rechtlich geprüft werden.</p>

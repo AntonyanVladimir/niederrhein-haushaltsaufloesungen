@@ -6,9 +6,9 @@ Professionelle, schlanke Angular-Website für ein lokales Unternehmen für Haush
 
 - Angular mit Standalone Components
 - Static/Prerender-first über Angular SSR/Prerender-Konfiguration
-- Kein Backend und keine Datenbank in Version 1
-- Vorbereitet für spätere .NET API-Anbindung
-- Deployment-fähig für Cloudflare Pages
+- Cloudflare Pages Functions für das Kontaktformular
+- Keine Datenbank in Version 1
+- Deployment-fähig für Cloudflare Pages inklusive `/api/contact`
 
 ## Struktur
 
@@ -18,8 +18,11 @@ frontend/
   prerender-routes.txt    Routen für Angular Prerendering
   src/app/
     core/seo/             Meta-Tags, Canonical URLs, JSON-LD LocalBusiness
+    core/api/             Angular API Services
     shared/               Wiederverwendbare UI-Komponenten
     pages/                Seiten und SEO-Landingpages
+functions/
+  api/contact.ts          Cloudflare Pages Function für Kontaktanfragen
 ```
 
 ## Seiten
@@ -55,6 +58,12 @@ Lokale Entwicklung:
 npm start
 ```
 
+Cloudflare Pages inklusive Function lokal testen:
+
+```bash
+npm run start:cloudflare
+```
+
 Prerender-Build:
 
 ```bash
@@ -81,21 +90,29 @@ Node Version:
 20 oder neuer
 ```
 
-## Spätere .NET API Integration
+Environment Variables in Cloudflare Pages:
+
+```text
+RESEND_API_KEY=...
+CONTACT_FROM_EMAIL=kontakt@niederrhein-haushaltsaufloesungen.de
+CONTACT_TO_EMAIL=nhaushaltsaufloesungen@gmail.com
+```
+
+Für `CONTACT_FROM_EMAIL` muss die Domain beim Maildienst, z. B. Resend, verifiziert sein. Gmail kann als Empfänger genutzt werden, aber nicht sinnvoll als Absender über Cloudflare Workers.
+
+## Cloudflare Backend
 
 TODO:
 
-- Kontaktformular von Mailto-Fallback auf `POST /api/contact` umstellen.
-- Angular Service unter `frontend/src/app/core/api/` ergänzen, z. B. `ContactApiService`.
-- API Base URL über Angular Environment oder Cloudflare Pages Environment Variable konfigurieren.
-- Serverseitige Validierung und Spam-Schutz im .NET Backend ergänzen.
-- Datenschutzerklärung aktualisieren, sobald Formulardaten serverseitig verarbeitet werden.
+- Maildienst-Domain verifizieren und DNS-Einträge setzen.
+- Cloudflare Environment Variables setzen.
+- Serverseitigen Spam-Schutz ergänzen.
 - Optional: Cloudflare Turnstile für Formularschutz integrieren.
 
-Aktuelle Integrationsstelle:
+API-Endpunkt:
 
 ```text
-frontend/src/app/shared/contact-form/contact-form.component.ts
+POST /api/contact
 ```
 
 ## Rechtliche Platzhalter
