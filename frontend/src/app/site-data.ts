@@ -3,8 +3,8 @@ export const contact = {
   phoneHref: '+491773344869',
   email: 'info@niederrhein-haushaltsaufloesungen.de',
   emailHref: 'info@niederrhein-haushaltsaufloesungen.de',
-  website: 'niederrhein-haushaltsaufloesungen.de',
-  websiteHref: 'https://niederrhein-haushaltsaufloesungen.de'
+  website: 'www.niederrhein-haushaltsaufloesungen.de',
+  websiteHref: 'https://www.niederrhein-haushaltsaufloesungen.de'
 };
 
 export const trustItems = [
