@@ -95,10 +95,10 @@ Environment Variables in Cloudflare Pages:
 ```text
 RESEND_API_KEY=...
 CONTACT_FROM_EMAIL=kontakt@niederrhein-haushaltsaufloesungen.de
-CONTACT_TO_EMAIL=nhaushaltsaufloesungen@gmail.com
+CONTACT_TO_EMAIL=info@niederrhein-haushaltsaufloesungen.de
 ```
 
-Für `CONTACT_FROM_EMAIL` muss die Domain beim Maildienst, z. B. Resend, verifiziert sein. Gmail kann als Empfänger genutzt werden, aber nicht sinnvoll als Absender über Cloudflare Workers.
+Für `CONTACT_FROM_EMAIL` muss die Domain beim Maildienst, z. B. Resend, verifiziert sein.
 
 ## Cloudflare Backend
 

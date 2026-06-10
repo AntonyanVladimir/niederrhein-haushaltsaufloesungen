@@ -1,7 +1,7 @@
 export const contact = {
   phone: '+49 177 3344869',
   phoneHref: '+491773344869',
-  email: 'nhaushaltsaufloesungen@gmail.com',
+  email: 'info@niederrhein-haushaltsaufloesungen.de',
   website: 'niederrhein-haushaltsaufloesungen.de'
 };
 
