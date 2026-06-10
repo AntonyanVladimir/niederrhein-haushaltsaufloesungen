@@ -19,7 +19,12 @@ import { contact } from '../../site-data';
         @if (!isPrivacy) {
           <h2>Angaben gemäß § 5 DDG</h2>
           <p><strong>Niederrhein Haushaltsauflösungen</strong><br>Adresse wird ergänzt<br>Deutschland</p>
-          <p><strong>Kontakt</strong><br>Telefon: {{ contact.phone }}<br>E-Mail: {{ contact.email }}</p>
+          <p>
+            <strong>Kontakt</strong><br>
+            Telefon: <a [href]="'tel:' + contact.phoneHref">{{ contact.phone }}</a><br>
+            E-Mail: <a [href]="'mailto:' + contact.emailHref">{{ contact.email }}</a><br>
+            Website: <a [href]="contact.websiteHref">{{ contact.website }}</a>
+          </p>
           <p><strong>Verantwortlich für den Inhalt</strong><br>Name und Anschrift werden ergänzt.</p>
           <p class="placeholder">Hinweis: Dieses Impressum enthält Platzhalter und muss vor Veröffentlichung rechtlich geprüft und vervollständigt werden.</p>
         } @else {
