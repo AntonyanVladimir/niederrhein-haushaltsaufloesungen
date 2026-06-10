@@ -41,6 +41,10 @@ import { contact, trustItems } from '../../site-data';
       display: grid;
       gap: clamp(2rem, 5vw, 4.5rem);
       grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+      min-width: 0;
+    }
+    .hero-copy {
+      min-width: 0;
     }
     .eyebrow {
       color: var(--accent-light);
@@ -101,9 +105,13 @@ import { contact, trustItems } from '../../site-data';
       .hero {
         padding: 2.75rem 0;
       }
+      .hero-grid {
+        padding-inline: 1.25rem 1.45rem;
+      }
       h1 {
-        font-size: clamp(1.85rem, 9vw, 2.4rem);
+        font-size: clamp(1.7rem, 7.4vw, 2.15rem);
         max-width: 100%;
+        overflow-wrap: anywhere;
       }
       .lead {
         font-size: 1.08rem;
@@ -123,8 +131,11 @@ import { contact, trustItems } from '../../site-data';
       }
     }
     @media (max-width: 380px) {
+      .hero-grid {
+        padding-inline: 1rem 1.25rem;
+      }
       h1 {
-        font-size: 1.68rem;
+        font-size: 1.56rem;
       }
       .lead {
         font-size: 1rem;
