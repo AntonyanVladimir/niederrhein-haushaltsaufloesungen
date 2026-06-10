@@ -37,8 +37,12 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return json({ message: validationError }, 400);
   }
 
-  if (!env.RESEND_API_KEY || !env.CONTACT_FROM_EMAIL || !env.CONTACT_TO_EMAIL) {
-    return json({ message: 'E-Mail-Versand ist nicht konfiguriert.' }, 503);
+  const missingConfig = missingEnvironmentVariables(env);
+  if (missingConfig.length > 0) {
+    return json({
+      message: 'E-Mail-Versand ist nicht konfiguriert.',
+      missing: missingConfig
+    }, 503);
   }
 
   const businessResult = await sendEmail(env, {
@@ -74,6 +78,16 @@ function validate(payload: ContactRequest): string | null {
   if (!payload.requestType?.trim()) return 'Bitte wählen Sie eine Anfrageart aus.';
   if (!payload.privacyAccepted) return 'Bitte bestätigen Sie die Datenschutzhinweise.';
   return null;
+}
+
+function missingEnvironmentVariables(env: Env): string[] {
+  return [
+    ['RESEND_API_KEY', env.RESEND_API_KEY],
+    ['CONTACT_FROM_EMAIL', env.CONTACT_FROM_EMAIL],
+    ['CONTACT_TO_EMAIL', env.CONTACT_TO_EMAIL]
+  ]
+    .filter(([, value]) => !value)
+    .map(([key]) => key);
 }
 
 async function sendEmail(env: Env, email: { to: string; replyTo?: string; subject: string; text: string }) {
