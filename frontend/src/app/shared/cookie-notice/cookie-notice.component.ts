@@ -10,9 +10,9 @@ const STORAGE_KEY = 'nh-cookie-notice-accepted';
   imports: [RouterLink],
   template: `
     @if (isVisible()) {
-      <section class="cookie-notice" aria-label="Cookie-Hinweis">
+      <section class="cookie-notice" aria-label="Hinweis zur Datennutzung">
         <div>
-          <h2>Cookie-Hinweis</h2>
+          <h2>Hinweis zur Datennutzung</h2>
           <p>Diese Website verwendet keine Tracking- oder Marketing-Cookies. Für den Betrieb werden nur technisch notwendige Funktionen genutzt.</p>
         </div>
         <div class="cookie-actions">
