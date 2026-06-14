@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AreaLinksComponent } from '../../shared/area-links/area-links.component';
 import { CtaSectionComponent } from '../../shared/cta-section/cta-section.component';
-import { trustItems } from '../../site-data';
 
 @Component({
   selector: 'nh-service-page',
@@ -30,9 +29,6 @@ import { trustItems } from '../../site-data';
         <ul class="check-list">
           @for (point of points; track point) {
             <li>{{ point }}</li>
-          }
-          @for (item of trustItems; track item) {
-            <li>{{ item }}</li>
           }
         </ul>
       </div>
@@ -70,5 +66,4 @@ export class ServicePageComponent {
   readonly points = this.data['points'] as string[];
   readonly image = this.data['image'] as string;
   readonly imageAlt = this.data['imageAlt'] as string;
-  readonly trustItems = trustItems.slice(0, 3);
 }

@@ -25,7 +25,14 @@ export const routes: Routes = [
       service: 'Haushaltsauflösungen',
       headline: 'Haushaltsauflösungen am Niederrhein',
       intro: 'Wir übernehmen Haushaltsauflösungen planbar, diskret und mit sauberer Übergabe.',
-      points: ['Kostenlose Vor-Ort-Besichtigung', 'Sortierung und fachgerechter Abtransport', 'Besenreine Übergabe nach Absprache'],
+      points: [
+        'Kostenlose Vor-Ort-Besichtigung',
+        'Sorgfältige Termin- und Ablaufplanung',
+        'Sortierung von Hausrat, Sperrmüll und verwertbaren Gegenständen',
+        'Fachgerechter Abtransport über geeignete Entsorgungsstellen',
+        'Nachlass- und Haushaltsauflösungen mit diskreter Abwicklung',
+        'Besenreine Übergabe nach Absprache'
+      ],
       image: '/images/haushaltsaufloesung.jpg',
       imageAlt: 'Geordnete Umzugskartons in einem hellen Wohnzimmer',
       seo: {
@@ -42,7 +49,14 @@ export const routes: Routes = [
       service: 'Entrümpelungen',
       headline: 'Entrümpelungen für Haus, Wohnung, Keller und Garage',
       intro: 'Wir räumen einzelne Räume oder komplette Objekte effizient, sorgfältig und nachvollziehbar.',
-      points: ['Räumung von Keller, Dachboden und Garage', 'Abtransport inklusive Entsorgung', 'Klare Abläufe und transparente Kosten'],
+      points: [
+        'Räumung von Keller, Dachboden, Garage und Nebenräumen',
+        'Entrümpelung einzelner Räume oder kompletter Objekte',
+        'Sortierung nach Entsorgung, Verwertung und Wiederverwendung',
+        'Abtransport inklusive fachgerechter Entsorgung',
+        'Saubere Übergabe der geräumten Bereiche',
+        'Klare Abläufe und transparente Kosten vor Beginn'
+      ],
       image: '/images/entruempelung.jpg',
       imageAlt: 'Aufgeräumte Garage mit sortierten Gegenständen zur Entsorgung',
       seo: {
@@ -59,7 +73,14 @@ export const routes: Routes = [
       service: 'Wohnungsauflösungen',
       headline: 'Wohnungsauflösungen mit besenreiner Übergabe',
       intro: 'Für Angehörige, Vermieter und Hausverwaltungen lösen wir Wohnungen termingerecht und diskret auf.',
-      points: ['Planung nach Übergabe- oder Kündigungsfrist', 'Diskrete Abwicklung bei Nachlassfällen', 'Saubere Übergabe an Eigentümer oder Verwaltung'],
+      points: [
+        'Planung nach Übergabe- oder Kündigungsfrist',
+        'Räumung von Möbeln, Hausrat, Keller- und Abstellflächen',
+        'Abstimmung mit Eigentümer, Vermieter oder Hausverwaltung',
+        'Diskrete Abwicklung bei Nachlassfällen',
+        'Fachgerechter Abtransport nicht mehr benötigter Gegenstände',
+        'Saubere Übergabe an Eigentümer oder Verwaltung'
+      ],
       image: '/images/wohnungsaufloesung.jpg',
       imageAlt: 'Besenrein geräumte Wohnung mit wenigen Kartons zur Übergabe',
       seo: {
