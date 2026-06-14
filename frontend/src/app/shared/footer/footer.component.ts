@@ -13,9 +13,9 @@ import { areas, contact } from '../../site-data';
           <h2>Niederrhein Haushaltsauflösungen</h2>
           <p>Zuverlässig räumen. Sauber übergeben.</p>
           <div class="footer-contact">
-            <a [href]="'tel:' + contact.phoneHref">{{ contact.phone }}</a>
-            <a [href]="'mailto:' + contact.emailHref">{{ contact.email }}</a>
-            <a [href]="contact.websiteHref">{{ contact.website }}</a>
+            <a [href]="'tel:' + contact.phoneHref"><span aria-hidden="true">☎</span>{{ contact.phone }}</a>
+            <a [href]="'mailto:' + contact.emailHref"><span aria-hidden="true">✉</span>{{ contact.email }}</a>
+            <a [href]="contact.websiteHref"><span aria-hidden="true">🌐</span>{{ contact.website }}</a>
           </div>
         </section>
         <section>
@@ -62,6 +62,20 @@ import { areas, contact } from '../../site-data';
     .footer-contact {
       display: grid;
       gap: .3rem;
+    }
+    .footer-contact a {
+      align-items: center;
+      display: inline-flex;
+      gap: .5rem;
+      overflow-wrap: anywhere;
+    }
+    .footer-contact span {
+      color: var(--accent-light);
+      flex: 0 0 auto;
+      font-size: 1.08rem;
+      font-weight: 850;
+      line-height: 1;
+      width: 1.35rem;
     }
     a {
       color: rgba(255, 255, 255, .86);
