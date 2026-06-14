@@ -55,7 +55,7 @@ import { contact } from '../../site-data';
           <h2>5. Speicherdauer</h2>
           <p>Kontaktanfragen speichern wir nur so lange, wie dies zur Bearbeitung der Anfrage und zur Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich ist. Nicht mehr benötigte Daten werden gelöscht.</p>
           <h2>6. Cookies und Tracking</h2>
-          <p>Diese Website verwendet keine Analyse- oder Marketing-Cookies und kein Tracking.</p>
+          <p>Diese Website verwendet keine Analyse- oder Marketing-Cookies und kein Tracking. Wenn Sie den Cookie-Hinweis bestätigen, wird diese Entscheidung lokal in Ihrem Browser gespeichert, damit der Hinweis nicht erneut angezeigt wird.</p>
           <h2>7. Ihre Rechte</h2>
           <p>Sie haben nach Maßgabe der DSGVO das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen bestimmte Verarbeitungen. Außerdem haben Sie das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren.</p>
           <h2>8. Pflicht zur Bereitstellung von Daten</h2>
