@@ -20,17 +20,23 @@ export const serviceCards = [
   {
     title: 'Haushaltsauflösungen',
     text: 'Strukturierte Räumung kompletter Haushalte inklusive Sortierung, Abtransport und sauberer Übergabe.',
-    link: '/haushaltsaufloesungen'
+    link: '/haushaltsaufloesungen',
+    image: '/images/haushaltsaufloesung.jpg',
+    imageAlt: 'Geordnete Umzugskartons in einem hellen Wohnzimmer'
   },
   {
     title: 'Entrümpelungen',
     text: 'Schnelle und fachgerechte Entrümpelung von Wohnungen, Häusern, Kellern, Dachböden und Garagen.',
-    link: '/entruempelungen'
+    link: '/entruempelungen',
+    image: '/images/entruempelung.jpg',
+    imageAlt: 'Aufgeräumte Garage mit sortierten Gegenständen zur Entsorgung'
   },
   {
     title: 'Wohnungsauflösungen',
     text: 'Verlässliche Wohnungsauflösung für Vermieter, Angehörige, Hausverwaltungen und Privatkunden.',
-    link: '/wohnungsaufloesungen'
+    link: '/wohnungsaufloesungen',
+    image: '/images/wohnungsaufloesung.jpg',
+    imageAlt: 'Besenrein geräumte Wohnung mit wenigen Kartons zur Übergabe'
   }
 ];
 

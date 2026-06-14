@@ -26,6 +26,8 @@ export const routes: Routes = [
       headline: 'Haushaltsauflösungen am Niederrhein',
       intro: 'Wir übernehmen Haushaltsauflösungen planbar, diskret und mit sauberer Übergabe.',
       points: ['Kostenlose Vor-Ort-Besichtigung', 'Sortierung und fachgerechter Abtransport', 'Besenreine Übergabe nach Absprache'],
+      image: '/images/haushaltsaufloesung.jpg',
+      imageAlt: 'Geordnete Umzugskartons in einem hellen Wohnzimmer',
       seo: {
         title: 'Haushaltsauflösungen am Niederrhein | Kreis Kleve',
         description: 'Professionelle Haushaltsauflösungen in Geldern, Kevelaer, Straelen und Umgebung mit Besichtigung und Festpreis.',
@@ -41,6 +43,8 @@ export const routes: Routes = [
       headline: 'Entrümpelungen für Haus, Wohnung, Keller und Garage',
       intro: 'Wir räumen einzelne Räume oder komplette Objekte effizient, sorgfältig und nachvollziehbar.',
       points: ['Räumung von Keller, Dachboden und Garage', 'Abtransport inklusive Entsorgung', 'Klare Abläufe und transparente Kosten'],
+      image: '/images/entruempelung.jpg',
+      imageAlt: 'Aufgeräumte Garage mit sortierten Gegenständen zur Entsorgung',
       seo: {
         title: 'Entrümpelungen am Niederrhein | Fachgerecht räumen lassen',
         description: 'Entrümpelungen in Geldern, Kevelaer, Straelen und Kreis Kleve. Kostenlose Besichtigung und transparente Festpreise.',
@@ -56,6 +60,8 @@ export const routes: Routes = [
       headline: 'Wohnungsauflösungen mit besenreiner Übergabe',
       intro: 'Für Angehörige, Vermieter und Hausverwaltungen lösen wir Wohnungen termingerecht und diskret auf.',
       points: ['Planung nach Übergabe- oder Kündigungsfrist', 'Diskrete Abwicklung bei Nachlassfällen', 'Saubere Übergabe an Eigentümer oder Verwaltung'],
+      image: '/images/wohnungsaufloesung.jpg',
+      imageAlt: 'Besenrein geräumte Wohnung mit wenigen Kartons zur Übergabe',
       seo: {
         title: 'Wohnungsauflösungen im Kreis Kleve | Besenrein übergeben',
         description: 'Wohnungsauflösungen am Niederrhein für Privatkunden, Vermieter und Hausverwaltungen. Diskret, zuverlässig und sauber.',

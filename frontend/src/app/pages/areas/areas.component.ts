@@ -17,6 +17,9 @@ import { areas } from '../../site-data';
     </section>
 
     <section class="section">
+      <div class="container area-media">
+        <img src="/images/einsatzgebiete.jpg" alt="Regionale Straße am Niederrhein mit einem neutralen Servicefahrzeug" loading="lazy" width="960" height="540">
+      </div>
       <div class="container area-grid">
         @for (area of areas; track area) {
           <article>
@@ -34,7 +37,20 @@ import { areas } from '../../site-data';
     </section>
 
     <nh-cta-section />
-  `
+  `,
+  styles: [`
+    .area-media {
+      margin-bottom: 1.5rem;
+    }
+    .area-media img {
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+    }
+  `]
 })
 export class AreasComponent {
   readonly areas = areas;

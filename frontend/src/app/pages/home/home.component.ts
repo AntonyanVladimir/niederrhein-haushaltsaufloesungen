@@ -20,7 +20,7 @@ import { serviceCards, trustItems } from '../../site-data';
       </div>
       <div class="container card-grid">
         @for (service of services; track service.link) {
-          <nh-service-card [title]="service.title" [text]="service.text" [link]="service.link" />
+          <nh-service-card [title]="service.title" [text]="service.text" [link]="service.link" [image]="service.image" [imageAlt]="service.imageAlt" />
         }
       </div>
     </section>

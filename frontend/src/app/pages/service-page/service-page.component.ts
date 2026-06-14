@@ -23,6 +23,9 @@ import { trustItems } from '../../site-data';
         <div>
           <h2>Leistungsumfang</h2>
           <p>Jede Räumung wird individuell geplant. Entscheidend sind Objektgröße, Zugang, Entsorgungsumfang und gewünschter Übergabezustand.</p>
+          <div class="service-media-block">
+            <img [src]="image" [alt]="imageAlt" loading="lazy" width="960" height="540">
+          </div>
         </div>
         <ul class="check-list">
           @for (point of points; track point) {
@@ -42,7 +45,21 @@ import { trustItems } from '../../site-data';
     </section>
 
     <nh-cta-section [headline]="service + ' unverbindlich anfragen'" />
-  `
+  `,
+  styles: [`
+    .service-media-block {
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      margin-top: 1.25rem;
+      overflow: hidden;
+    }
+    .service-media-block img {
+      aspect-ratio: 16 / 9;
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+    }
+  `]
 })
 export class ServicePageComponent {
   private readonly route = inject(ActivatedRoute);
@@ -51,5 +68,7 @@ export class ServicePageComponent {
   readonly headline = this.data['headline'] as string;
   readonly intro = this.data['intro'] as string;
   readonly points = this.data['points'] as string[];
+  readonly image = this.data['image'] as string;
+  readonly imageAlt = this.data['imageAlt'] as string;
   readonly trustItems = trustItems.slice(0, 3);
 }

@@ -7,9 +7,12 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     <article class="service-card">
-      <h3>{{ title() }}</h3>
-      <p>{{ text() }}</p>
-      <a [routerLink]="link()">Mehr erfahren</a>
+      <img [src]="image()" [alt]="imageAlt()" loading="lazy" width="640" height="360">
+      <div class="service-card-body">
+        <h3>{{ title() }}</h3>
+        <p>{{ text() }}</p>
+        <a [routerLink]="link()">Mehr erfahren</a>
+      </div>
     </article>
   `,
   styles: [`
@@ -21,6 +24,18 @@ import { RouterLink } from '@angular/router';
       display: flex;
       flex-direction: column;
       min-height: 245px;
+      overflow: hidden;
+    }
+    img {
+      aspect-ratio: 16 / 9;
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+    }
+    .service-card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
       padding: 1.5rem;
     }
     h3 {
@@ -44,4 +59,6 @@ export class ServiceCardComponent {
   readonly title = input.required<string>();
   readonly text = input.required<string>();
   readonly link = input.required<string>();
+  readonly image = input.required<string>();
+  readonly imageAlt = input.required<string>();
 }
