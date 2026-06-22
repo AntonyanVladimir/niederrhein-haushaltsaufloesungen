@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { contact } from '../../site-data';
+import { business, contact } from '../../site-data';
 
 @Component({
   selector: 'nh-legal',
@@ -19,11 +19,12 @@ import { contact } from '../../site-data';
         @if (!isPrivacy) {
           <h2>Angaben gemäß § 5 DDG</h2>
           <p>
-            <strong>Niederrhein Haushaltsauflösungen</strong><br>
-            Inhaber: Vladimir Antonyan<br>
-            Vorster Heidweg 20<br>
-            47661 Issum<br>
-            Deutschland
+            <strong>{{ business.name }}</strong><br>
+            {{ business.legalForm }}<br>
+            Inhaber: {{ business.owner }}<br>
+            {{ business.streetAddress }}<br>
+            {{ business.postalCode }} {{ business.city }}<br>
+            {{ business.country }}
           </p>
           <p>
             <strong>Kontakt</strong><br>
@@ -31,8 +32,7 @@ import { contact } from '../../site-data';
             E-Mail: <a [href]="'mailto:' + contact.emailHref">{{ contact.email }}</a><br>
             Website: <a [href]="contact.websiteHref">{{ contact.website }}</a>
           </p>
-          <p><strong>Umsatzsteuer-ID</strong><br>Wird ergänzt, falls vorhanden.</p>
-          <p><strong>Verantwortlich für den Inhalt</strong><br>Vladimir Antonyan, Anschrift wie oben.</p>
+          <p><strong>Verantwortlich für den Inhalt</strong><br>{{ business.owner }}, Anschrift wie oben.</p>
           <h2>Haftung für Inhalte</h2>
           <p>Die Inhalte dieser Website wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernehmen wir keine Gewähr.</p>
           <h2>Haftung für Links</h2>
@@ -41,9 +41,9 @@ import { contact } from '../../site-data';
           <h2>1. Verantwortlicher</h2>
           <p>
             Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br>
-            Niederrhein Haushaltsauflösungen<br>
-            Inhaber: Vladimir Antonyan<br>
-            Vorster Heidweg 20, 47661 Issum<br>
+            {{ business.name }}<br>
+            Inhaber: {{ business.owner }}<br>
+            {{ business.streetAddress }}, {{ business.postalCode }} {{ business.city }}<br>
             E-Mail: <a [href]="'mailto:' + contact.emailHref">{{ contact.email }}</a>
           </p>
           <h2>2. Hosting und technische Bereitstellung</h2>
@@ -69,5 +69,6 @@ import { contact } from '../../site-data';
 export class LegalComponent {
   private readonly route = inject(ActivatedRoute);
   readonly contact = contact;
+  readonly business = business;
   readonly isPrivacy = this.route.snapshot.data['page'] === 'datenschutz';
 }

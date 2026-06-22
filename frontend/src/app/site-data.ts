@@ -7,6 +7,18 @@ export const contact = {
   websiteHref: 'https://www.niederrhein-haushaltsaufloesungen.de'
 };
 
+export const business = {
+  name: 'Niederrhein Haushaltsauflösungen',
+  owner: 'Vladimir Ashot Antonyan',
+  legalForm: 'Einzelunternehmen',
+  streetAddress: 'Vorster Heidweg 20',
+  postalCode: '47661',
+  city: 'Issum',
+  country: 'Deutschland',
+  countryCode: 'DE',
+  foundedOn: '2026-06-15'
+};
+
 export const trustItems = [
   'Kostenlose Besichtigung vor Ort',
   'Transparente Festpreise',

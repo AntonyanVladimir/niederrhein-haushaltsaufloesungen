@@ -115,6 +115,6 @@ API-Endpunkt:
 POST /api/contact
 ```
 
-## Rechtliche Platzhalter
+## Rechtliche Angaben
 
-Impressum und Datenschutz enthalten bewusst Platzhalter. Vor Veröffentlichung müssen Name, Anschrift, verantwortliche Person und Datenschutzhinweise rechtlich geprüft und vervollständigt werden.
+Die Unternehmensdaten werden zentral in `frontend/src/app/site-data.ts` gepflegt. Impressum und Datenschutz sollten bei rechtlichen oder technischen Änderungen erneut fachlich geprüft werden.

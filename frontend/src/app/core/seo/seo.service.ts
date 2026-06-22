@@ -4,10 +4,10 @@ import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { SeoData } from './seo.model';
-import { contact } from '../../site-data';
+import { business, contact } from '../../site-data';
 
-const SITE_URL = 'https://niederrhein-haushaltsaufloesungen.de';
-const BUSINESS_NAME = 'Niederrhein Haushaltsauflösungen';
+const SITE_URL = contact.websiteHref;
+const BUSINESS_NAME = business.name;
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -78,9 +78,18 @@ export class SeoService {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       name: BUSINESS_NAME,
+      legalName: business.owner,
       url: SITE_URL,
       email: contact.email,
       telephone: contact.phone,
+      foundingDate: business.foundedOn,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: business.streetAddress,
+        postalCode: business.postalCode,
+        addressLocality: business.city,
+        addressCountry: business.countryCode
+      },
       areaServed: ['Geldern', 'Kevelaer', 'Straelen', 'Kerken', 'Issum', 'Wachtendonk', 'Kreis Kleve'],
       slogan: 'Zuverlässig räumen. Sauber übergeben.',
       serviceType: [
