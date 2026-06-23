@@ -3,6 +3,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ServicePageComponent } from './pages/service-page/service-page.component';
 import { AreasComponent } from './pages/areas/areas.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { EstimateComponent } from './pages/estimate/estimate.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { LocationLandingComponent } from './pages/location-landing/location-landing.component';
 
@@ -98,6 +99,17 @@ export const routes: Routes = [
         title: 'Einsatzgebiete | Geldern, Kevelaer, Straelen und Kreis Kleve',
         description: 'Niederrhein Haushaltsauflösungen ist regional in Geldern, Kevelaer, Straelen, Kerken, Issum, Wachtendonk und Kreis Kleve tätig.',
         canonicalPath: '/einsatzgebiete'
+      }
+    }
+  },
+  {
+    path: 'schaetzung',
+    component: EstimateComponent,
+    data: {
+      seo: {
+        title: 'Preisschätzung | Entrümpelung grob einschätzen',
+        description: 'Unverbindliche Preisorientierung für Entrümpelung, Haushaltsauflösung oder Wohnungsauflösung am Niederrhein.',
+        canonicalPath: '/schaetzung'
       }
     }
   },

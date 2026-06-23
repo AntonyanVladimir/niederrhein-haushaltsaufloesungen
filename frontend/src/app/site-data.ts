@@ -7,6 +7,11 @@ export const contact = {
   websiteHref: 'https://www.niederrhein-haushaltsaufloesungen.de'
 };
 
+export const features = {
+  aiEstimate: true,
+  aiEstimatePreview: true
+};
+
 export const business = {
   name: 'Niederrhein Haushaltsauflösungen',
   owner: 'Vladimir Antonyan',
