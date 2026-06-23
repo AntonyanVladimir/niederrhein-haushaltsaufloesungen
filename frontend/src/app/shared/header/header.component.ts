@@ -38,7 +38,12 @@ import { features } from '../../site-data';
           </div>
           <div class="nav-actions">
             @if (features.aiEstimate) {
-              <a class="estimate-link" routerLink="/schaetzung" routerLinkActive="active" (click)="closeMenu()">Kosten schätzen</a>
+              <a class="estimate-link" routerLink="/schaetzung" routerLinkActive="active" (click)="closeMenu()">
+                Kosten schätzen
+                @if (features.aiEstimatePreview) {
+                  <span>Preview</span>
+                }
+              </a>
             }
           </div>
         </div>
@@ -128,6 +133,14 @@ import { features } from '../../site-data';
       font-weight: 750;
       padding: .42rem .62rem;
       text-decoration: none;
+    }
+    .estimate-link span {
+      background: rgba(255, 255, 255, .22);
+      border-radius: 4px;
+      font-size: .65rem;
+      margin-left: .35rem;
+      padding: .08rem .22rem;
+      text-transform: uppercase;
     }
     .estimate-link:hover,
     .estimate-link.active {

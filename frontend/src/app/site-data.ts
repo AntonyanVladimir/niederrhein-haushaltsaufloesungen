@@ -8,7 +8,8 @@ export const contact = {
 };
 
 export const features = {
-  aiEstimate: true
+  aiEstimate: true,
+  aiEstimatePreview: true
 };
 
 export const business = {

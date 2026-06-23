@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { EstimateWidgetComponent } from '../../shared/estimate-widget/estimate-widget.component';
+import { features } from '../../site-data';
 
 @Component({
   selector: 'nh-estimate-page',
@@ -17,7 +18,12 @@ import { EstimateWidgetComponent } from '../../shared/estimate-widget/estimate-w
 
     <section class="section">
       <div class="container estimate-layout">
-        <nh-estimate-widget />
+        <div class="estimate-main">
+          @if (features.aiEstimatePreview) {
+            <p class="preview-note">Preview: Diese Funktion wird noch getestet. Die Berechnung ist unverbindlich und kann sich noch ändern.</p>
+          }
+          <nh-estimate-widget />
+        </div>
         <aside class="estimate-note">
           <h2>Wichtig zu wissen</h2>
           <p>Die Schätzung dient nur zur ersten Orientierung. Etage, Zugang, Parkweg, Füllgrad und besondere Gegenstände können den finalen Aufwand verändern.</p>
@@ -32,6 +38,19 @@ import { EstimateWidgetComponent } from '../../shared/estimate-widget/estimate-w
       display: grid;
       gap: 1.5rem;
       grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+    }
+    .estimate-main {
+      display: grid;
+      gap: 1rem;
+    }
+    .preview-note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 8px;
+      color: #9a3412;
+      font-weight: 750;
+      margin: 0;
+      padding: .85rem 1rem;
     }
     .estimate-note {
       background: var(--white);
@@ -54,4 +73,6 @@ import { EstimateWidgetComponent } from '../../shared/estimate-widget/estimate-w
     }
   `]
 })
-export class EstimateComponent {}
+export class EstimateComponent {
+  readonly features = features;
+}
