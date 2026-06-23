@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { contact } from '../../site-data';
+import { features } from '../../site-data';
 
 @Component({
   selector: 'nh-header',
@@ -36,7 +36,11 @@ import { contact } from '../../site-data';
             <a routerLink="/einsatzgebiete" routerLinkActive="active" (click)="closeMenu()">Einsatzgebiete</a>
             <a routerLink="/kontakt" routerLinkActive="active" (click)="closeMenu()">Kontakt</a>
           </div>
-          <a class="phone-link" [href]="'tel:' + phoneHref" (click)="closeMenu()">Jetzt anrufen</a>
+          <div class="nav-actions">
+            @if (features.aiEstimate) {
+              <a class="estimate-link" routerLink="/schaetzung" routerLinkActive="active" (click)="closeMenu()">Kosten schätzen</a>
+            }
+          </div>
         </div>
       </nav>
     </header>
@@ -109,14 +113,26 @@ import { contact } from '../../site-data';
     .nav-links a:hover {
       color: var(--accent);
     }
-    .phone-link {
-      background: var(--navy);
+    .nav-actions {
+      align-items: center;
+      display: flex;
+      flex: 0 0 auto;
+      gap: .65rem;
+    }
+    .estimate-link {
+      background: var(--accent);
       border-radius: 6px;
       color: var(--white);
       flex: 0 0 auto;
+      font-size: .82rem;
       font-weight: 750;
-      padding: .75rem 1rem;
+      padding: .42rem .62rem;
       text-decoration: none;
+    }
+    .estimate-link:hover,
+    .estimate-link.active {
+      background: #92764f;
+      color: var(--white);
     }
     .menu-toggle {
       align-items: center;
@@ -207,7 +223,12 @@ import { contact } from '../../site-data';
         padding: .55rem .7rem;
         width: 100%;
       }
-      .phone-link {
+      .nav-actions {
+        display: grid;
+        gap: .5rem;
+        width: 100%;
+      }
+      .estimate-link {
         text-align: center;
         width: 100%;
       }
@@ -224,8 +245,7 @@ import { contact } from '../../site-data';
   `]
 })
 export class HeaderComponent {
-  readonly phone = contact.phone;
-  readonly phoneHref = contact.phoneHref;
+  readonly features = features;
   readonly menuOpen = signal(false);
 
   toggleMenu(): void {
