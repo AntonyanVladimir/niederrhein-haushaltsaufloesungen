@@ -1,14 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-
-type FillLevel = 'low' | 'normal' | 'high' | 'extreme';
-type PropertyType = 'Wohnung' | 'Haus' | 'Keller' | 'Garage' | 'Gewerbe';
-
-interface EstimateResult {
-  min: number;
-  max: number;
-  summary: string[];
-}
+import { EstimateApiService, EstimateResponse, FillLevel, ParkingDistance, PropertyType } from '../../core/api/estimate-api.service';
 
 @Component({
   selector: 'nh-estimate-widget',
@@ -77,7 +69,7 @@ interface EstimateResult {
           <div class="field span-2">
             <label for="photos">Fotos optional</label>
             <input id="photos" type="file" accept="image/*" multiple (change)="selectFiles($event)">
-            <p class="hint">Bis zu 3 Fotos. Aktuell nur UI-Vorbereitung, noch kein Upload.</p>
+            <p class="hint">Bis zu 3 Fotos, jeweils maximal 3 MB.</p>
             @if (selectedFileNames().length > 0) {
               <ul class="file-list">
                 @for (fileName of selectedFileNames(); track fileName) {
@@ -91,7 +83,13 @@ interface EstimateResult {
             <p class="form-note error span-2" role="alert">Bitte geben Sie eine realistische Fläche an.</p>
           }
 
-          <button class="btn btn-primary span-2" type="submit">Preisrange grob berechnen</button>
+          @if (submitState() === 'error') {
+            <p class="form-note error span-2" role="alert">Die Schätzung konnte gerade nicht berechnet werden. Bitte versuchen Sie es später erneut.</p>
+          }
+
+          <button class="btn btn-primary span-2" type="submit" [disabled]="submitState() === 'sending'">
+            {{ submitState() === 'sending' ? 'Schätzung wird berechnet ...' : 'Preisrange grob berechnen' }}
+          </button>
         </form>
 
         @if (estimate(); as result) {
@@ -229,6 +227,10 @@ interface EstimateResult {
     .estimate-result p {
       margin: 0;
     }
+    button:disabled {
+      cursor: wait;
+      opacity: .72;
+    }
     @media (max-width: 900px) {
       .estimate,
       .estimate-form {
@@ -250,6 +252,7 @@ interface EstimateResult {
 })
 export class EstimateWidgetComponent {
   private readonly formBuilder = inject(FormBuilder);
+  private readonly estimateApi = inject(EstimateApiService);
 
   readonly propertyTypes: PropertyType[] = ['Wohnung', 'Haus', 'Keller', 'Garage', 'Gewerbe'];
   readonly fillLevels: { value: FillLevel; label: string }[] = [
@@ -264,18 +267,20 @@ export class EstimateWidgetComponent {
     areaSqm: [60, [Validators.required, Validators.min(5), Validators.max(500)]],
     floor: [0, [Validators.min(0), Validators.max(12)]],
     hasElevator: [false],
-    parkingDistance: ['near' as 'near' | 'medium' | 'far'],
+    parkingDistance: ['near' as ParkingDistance],
     fillLevel: ['normal' as FillLevel]
   });
 
   readonly submitted = signal(false);
+  readonly submitState = signal<'idle' | 'sending' | 'success' | 'error'>('idle');
+  readonly selectedFiles = signal<File[]>([]);
   readonly selectedFileNames = signal<string[]>([]);
-  readonly estimate = signal<EstimateResult | null>(null);
-  readonly fileCount = computed(() => this.selectedFileNames().length);
+  readonly estimate = signal<EstimateResponse | null>(null);
 
   selectFiles(event: Event): void {
     const input = event.target as HTMLInputElement;
     const files = Array.from(input.files ?? []).slice(0, 3);
+    this.selectedFiles.set(files);
     this.selectedFileNames.set(files.map((file) => file.name));
   }
 
@@ -289,48 +294,23 @@ export class EstimateWidgetComponent {
     }
 
     const value = this.form.getRawValue();
-    const area = value.areaSqm;
-    const baseByType: Record<PropertyType, number> = {
-      Wohnung: 18,
-      Haus: 20,
-      Keller: 16,
-      Garage: 14,
-      Gewerbe: 22
-    };
-    const fillMultiplier: Record<FillLevel, number> = {
-      low: .75,
-      normal: 1,
-      high: 1.35,
-      extreme: 1.85
-    };
-    const parkingMultiplier = value.parkingDistance === 'far' ? 1.18 : value.parkingDistance === 'medium' ? 1.08 : 1;
-    const floorMultiplier = value.hasElevator ? 1 : 1 + Math.min(value.floor, 5) * .06;
-    const minimumByType: Record<PropertyType, number> = {
-      Wohnung: 450,
-      Haus: 650,
-      Keller: 250,
-      Garage: 220,
-      Gewerbe: 700
-    };
+    this.submitState.set('sending');
+    this.estimate.set(null);
 
-    const calculated = area * baseByType[value.propertyType] * fillMultiplier[value.fillLevel] * parkingMultiplier * floorMultiplier;
-    const midpoint = Math.max(minimumByType[value.propertyType], calculated);
-    const min = this.roundToFifty(midpoint * .82);
-    const max = this.roundToFifty(midpoint * 1.22);
-
-    this.estimate.set({
-      min,
-      max,
-      summary: [
-        `${value.propertyType}, ca. ${area} m²`,
-        `Füllgrad: ${this.fillLevels.find((level) => level.value === value.fillLevel)?.label}`,
-        value.hasElevator ? 'Aufzug berücksichtigt' : `Etage ${value.floor} ohne Aufzug berücksichtigt`,
-        `${this.fileCount()} Foto(s) ausgewählt`
-      ]
+    this.estimateApi.calculate({
+      propertyType: value.propertyType,
+      areaSqm: value.areaSqm,
+      floor: value.floor,
+      hasElevator: value.hasElevator,
+      parkingDistance: value.parkingDistance,
+      fillLevel: value.fillLevel,
+      photos: this.selectedFiles()
+    }).subscribe({
+      next: (estimate) => {
+        this.estimate.set(estimate);
+        this.submitState.set('success');
+      },
+      error: () => this.submitState.set('error')
     });
-  }
-
-  private roundToFifty(value: number): number {
-    return Math.max(150, Math.round(value / 50) * 50);
   }
 }
