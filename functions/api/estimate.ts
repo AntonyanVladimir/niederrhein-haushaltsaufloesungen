@@ -230,13 +230,13 @@ function calculateEstimate(input: EstimateInput, ai: AiFeatures | null): Estimat
     low: .75,
     normal: 1,
     high: 1.35,
-    extreme: 1.85
+    extreme: 2.1
   };
   const minimumByType: Record<PropertyType, number> = {
     Wohnung: 450,
     Haus: 650,
-    Keller: 250,
-    Garage: 220,
+    Keller: 300,
+    Garage: 300,
     Gewerbe: 700
   };
 
