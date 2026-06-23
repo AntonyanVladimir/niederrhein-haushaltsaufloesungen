@@ -9,7 +9,7 @@ export const contact = {
 
 export const business = {
   name: 'Niederrhein Haushaltsauflösungen',
-  owner: 'Vladimir Ashot Antonyan',
+  owner: 'Vladimir Antonyan',
   legalForm: 'Einzelunternehmen',
   streetAddress: 'Vorster Heidweg 20',
   postalCode: '47661',
